@@ -1,0 +1,51 @@
+# Requirements
+
+Simplified PRD for the Dutchie front-end take-home challenge.
+
+## Stack (must use)
+
+- pnpm
+- React
+- Emotion
+- Tanstack Query
+- Vitest
+- React Testing Library
+
+## Scope
+
+All work goes in the **Your Storefront** section of the app (`src/your-storefront.tsx`). Do not modify the "Read me first!" page.
+
+## Tasks
+
+### Task 1: Fetch product data
+
+- Fetch products from the `get-products` endpoint.
+- Manage the data's state with React Query.
+- Render a `<ProductCard />` for each product.
+- Replace the hardcoded values in `<ProductCard />` with values from the query.
+
+### Task 2: Style the product card
+
+- Build and style `<ProductCard />` to match the mockup: `https://dutchie-images.s3.us-west-2.amazonaws.com/example-product-card.png`.
+- No spec values are provided; approximate spacing, color, and typography.
+
+### Task 3: Product Detail Page (PDP)
+
+- Build the PDP in `product.tsx`.
+- Display: name, photo, description, brand, effects, and any other relevant fields.
+- No design provided — use judgment.
+- Wire up navigation from a product card to its PDP.
+
+## Cross-cutting requirements
+
+- **Tests:** Add a few basic unit tests using Vitest + React Testing Library. Reference `page-wrapper.test.tsx` for setup. Expect to extend these in the live portion.
+- **Commits:** Many small, well-scoped commits.
+- **AI use:** Allowed, but be able to defend every line and decision in a live discussion.
+
+## Definition of done
+
+- Storefront renders product cards from live query data.
+- Product card visually matches the mockup.
+- PDP renders all required product fields.
+- Navigation between storefront and PDP works.
+- Unit tests pass; no lint/type errors.
