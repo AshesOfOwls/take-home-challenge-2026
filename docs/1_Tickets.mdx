@@ -14,47 +14,46 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ### Setup
 
-#### T-01 — Extract `fetchProducts` into an API module
+#### T-01 — Create the products API module
 
-- [ ] Move `fetchProducts` from `src/your-storefront.tsx` into `src/api/products.ts`.
-- [ ] Preserve typing and error handling.
-- [ ] Update storefront import.
+- [ ] Create `src/api/products.ts` with a `fetchProducts` helper that hits `get-products`.
+- [ ] Type the response against `Product` and surface a clear error on non-2xx.
+- [ ] Use it from `src/your-storefront.tsx`.
 
-_Acceptance:_ no behavior change; storefront imports from the new module.
+_Acceptance:_ storefront fetches products via the new module.
 
-#### T-02 — Wrap the products query in a `useProducts` hook
+#### T-02 — Add a `useProducts` query hook
 
-- [ ] Create `src/hooks/use-products.ts` returning the `useQuery` result.
-- [ ] Replace the inline `useQuery` call in the storefront with the hook.
+- [ ] Create `src/hooks/use-products.ts` that calls `useQuery` with `fetchProducts`.
+- [ ] Use the hook from `src/your-storefront.tsx`.
 
-_Acceptance:_ no `useQuery` calls remain in components.
+_Acceptance:_ storefront reads products via `useProducts`; no `useQuery` calls live in components.
 
 ### Task 1: Product fetch wiring
 
 #### T-03 — Render dynamic product values
 
-- [ ] Inspect the rendered storefront against the API payload.
-- [ ] Confirm no hardcoded values remain in `ProductCard` — every field comes from the `product` prop.
-- [ ] Fix the render loop if any product is missing or duplicated.
+- [ ] Confirm every field in `ProductCard` comes from the `product` prop — no hardcoded values.
+- [ ] Spot-check the rendered storefront against the API payload (one card per product, correct data).
 
 _Acceptance:_ every product in the payload appears exactly once with its own data.
 
-#### T-04 — Loading + error UX
+#### T-04 — Loading + error states
 
-- [ ] Replace inline loading text with a skeleton or spinner.
-- [ ] Replace inline error text with an alert-styled component.
+- [ ] Render a loading message while the query is pending.
+- [ ] Render an error message when the query fails.
 - [ ] Add `role="status"` to loading and `role="alert"` to error.
 
-_Acceptance:_ states are visually distinct and accessible.
+_Acceptance:_ both states render and are accessible.
 
 ### Task 2: Product card styling
 
 #### T-05 — Storefront grid layout
 
-- [ ] Switch `ProductGrid` from `flex` to CSS grid.
-- [ ] Use breakpoints from `utils/media-queries.ts` for responsive columns.
+- [ ] Lay out the product cards in a responsive grid in `your-storefront.tsx`.
+- [ ] Use breakpoints from `utils/media-queries.ts`.
 
-_Acceptance:_ cards reflow cleanly across breakpoints.
+_Acceptance:_ cards reflow across breakpoints.
 
 #### T-06 — Product card scaffold
 
@@ -63,27 +62,24 @@ _Acceptance:_ cards reflow cleanly across breakpoints.
 
 _Acceptance:_ component structure mirrors the mockup hierarchy.
 
-#### T-07 — Image styling
+#### T-07 — Style the card image
 
-- [ ] Apply fixed aspect ratio and rounded corners.
-- [ ] Set `object-fit: cover`.
+- [ ] Style the `Image` styled component to fit the card layout.
 
-_Acceptance:_ image renders at a consistent size across all cards.
+_Acceptance:_ image renders consistently across cards.
 
-#### T-08 — Typography (brand, name, price)
+#### T-08 — Style card typography
 
-- [ ] Style brand small / muted.
-- [ ] Style name prominent.
-- [ ] Style price bold.
+- [ ] Style the brand, name, and price text.
 
-_Acceptance:_ visual hierarchy matches the mockup.
+_Acceptance:_ visual hierarchy is readable.
 
-#### T-09 — Card chrome (spacing, border, hover/focus)
+#### T-09 — Style the card container
 
-- [ ] Add padding and border radius.
-- [ ] Add hover/focus elevation or background change.
+- [ ] Style `CardContainer` (spacing, borders, etc.).
+- [ ] Add a hover/focus state.
 
-_Acceptance:_ card reads as interactive and clickable.
+_Acceptance:_ card reads as interactive.
 
 #### T-10 — Edge cases on the card
 
@@ -118,7 +114,7 @@ _Acceptance:_ direct URL load (`/product/2`) fetches and renders the correct pro
 #### T-14 — Replace the PDP placeholder with a real scaffold
 
 - [ ] In `src/product.tsx`, remove the hardcoded placeholder content.
-- [ ] Build a two-column desktop layout (image | details), stacked on mobile.
+- [ ] Lay out sections for the product image and details.
 
 _Acceptance:_ scaffold renders without crashing, even before content is wired up.
 
@@ -133,9 +129,9 @@ _Acceptance:_ primary identifiers visible above the fold.
 #### T-16 — PDP description + effects
 
 - [ ] Render `descriptionHtml` (sanitized) — required by spec.
-- [ ] Render effects as a list or simple bars — required by spec.
+- [ ] Render effects — required by spec.
 
-_Acceptance:_ long-form info section complete.
+_Acceptance:_ description and effects render.
 
 #### T-17 — PDP secondary fields + back link
 
@@ -147,10 +143,10 @@ _Acceptance:_ nothing from the `Product` type is conspicuously missing.
 
 #### T-18 — PDP loading + not-found states
 
-- [ ] Add a loading skeleton.
-- [ ] Add a friendly empty state for unknown ids.
+- [ ] Render a loading message while the product is loading.
+- [ ] Render a not-found message for unknown ids.
 
-_Acceptance:_ bad ids show a 404-style message instead of crashing.
+_Acceptance:_ bad ids show a not-found message instead of crashing.
 
 ### Tests
 
