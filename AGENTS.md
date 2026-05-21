@@ -19,7 +19,10 @@ If a request conflicts with the PRD or backlog, surface the conflict — don't s
 
 - **Work one ticket at a time.** Pick from `## In Progress` in `1_Tickets.mdx`, or move a Backlog item there first.
 - **One commit per ticket** (or per sub-task on larger tickets). Many small, well-scoped commits is an explicit grading criterion.
-- **Never commit unprompted** — the user controls when to commit.
+- **Commit messages are ticket-prefixed.** Use `T-XX: <short imperative summary>` (e.g. `T-01: add fetchProducts helper hitting get-products`).
+- **Commit policy — code vs. kanban:**
+  - **OK to auto-commit:** kanban-only changes to `docs/1_Tickets.mdx` — moving a ticket into `## In Progress` or `## Done`. These get their own dedicated commit (e.g. `T-01: move to In Progress`).
+  - **Never auto-commit real code changes.** Any commit that touches files outside `docs/1_Tickets.mdx` — including checking off sub-task boxes alongside the work that completes them — must wait for the user to explicitly ask for the commit. Stage the diff, propose the commit message, and stop.
 - **Check off sub-tasks** in the ticket file as you finish them. Move the ticket card to `## Done` only when its acceptance criteria are met.
 - **Stay in scope.** If a task surfaces work that isn't in the current ticket, note it and propose a new ticket — don't expand the current one.
 
