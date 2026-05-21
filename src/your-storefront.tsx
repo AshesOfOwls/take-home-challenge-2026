@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import media from 'utils/media-queries';
 import { PageWrapper } from './components/layout/page-wrapper';
 import { ProductCard } from './components/product-card';
 import { useProducts } from './hooks/use-products';
@@ -21,5 +22,16 @@ export function YourStorefront() {
 }
 
 const ProductGrid = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 300px;
+  gap: 16px;
+  justify-content: center;
+
+  ${media.tablet`
+    grid-template-columns: repeat(2, 300px);
+  `}
+
+  ${media.desktop`
+    grid-template-columns: repeat(3, 300px);
+  `}
 `;
