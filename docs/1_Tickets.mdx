@@ -105,11 +105,11 @@ _Acceptance:_ clicking a card lands on the matching PDP URL.
 
 #### T-13 — PDP data fetching
 
-- [ ] Add a `getProductById(id)` helper in `src/api/products.ts`.
+- [ ] Add a `getProductById(id)` helper in `src/api/products.ts` — the API only exposes `/get-products`, so this fetches the list and filters by id (returns `Product | undefined`).
 - [ ] Add a `useProduct(id)` React Query hook keyed by id.
-- [ ] Consume it in `src/product.tsx`.
+- [ ] Consume it in `src/product.tsx`, reading the id from `useParams`.
 
-_Acceptance:_ direct URL load (`/product/2`) fetches and renders the correct product.
+_Acceptance:_ direct URL load (`/product/2`) fetches and renders the correct product; unknown ids resolve to `undefined`.
 
 #### T-14 — Replace the PDP placeholder with a real scaffold
 
