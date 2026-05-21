@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import type { Product } from '../../../data';
-import { CardContainer, Image } from './product-card.styles';
+import { Brand, CardContainer, Image, Name, Price } from './product-card.styles';
 
 type ProductCardProps = {
   product: Product;
@@ -13,7 +13,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     <Link to={'/product'}>
       <CardContainer>
         <Image src={product.image} alt={product.name} title={product.name} />
-        {product.name}
+        <Brand>{product.brandName}</Brand>
+        <Name>{product.name}</Name>
+        <Price>${product.prices[0]}</Price>
       </CardContainer>
     </Link>
   );
