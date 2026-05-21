@@ -146,6 +146,21 @@ _Acceptance:_ happy path + 404 path both green.
 
 _Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
 
+### Manual styling
+
+#### T-23 — Manual styling pass
+
+Catalog of visual styling owned by the candidate, not the AI. Scaffolding (empty styled stubs, layout primitives, breakpoints, placeholder values) is in place; the work here is typography, color, spacing, and visual polish.
+
+- [ ] `Brand`, `Name`, `Price` in `src/components/product-card/product-card.styles.tsx` — typography, alignment.
+- [ ] `Image` in `src/components/product-card/product-card.styles.tsx` — aspect-ratio, object-fit if needed.
+- [ ] `CardContainer` in `src/components/product-card/product-card.styles.tsx` — refine dimensions, border, padding, hover/focus visual treatment.
+- [ ] `ProductGrid` in `src/your-storefront.tsx` — refine gap, column widths, breakpoint thresholds.
+- [ ] Loading and error `<div>`s in `src/your-storefront.tsx` — typography, spacing, placement.
+- [ ] PDP layout and typography in `src/product.tsx` — once T-14 scaffold lands.
+
+_Acceptance:_ every visual decision in the app is the candidate's, not the AI's.
+
 ---
 
 ## Done
