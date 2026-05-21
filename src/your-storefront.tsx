@@ -11,7 +11,7 @@ export function YourStorefront() {
     <PageWrapper heading='Your Storefront' icon='menu'>
       <ProductGrid>
         {(products ?? []).map((product) => (
-          <ProductCard key={product.id} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </ProductGrid>
     </PageWrapper>
