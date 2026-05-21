@@ -1,0 +1,200 @@
+# Tickets
+
+Kanban board for the Dutchie take-home. Move tickets between columns as you work. Check off sub-tasks as you complete them; a ticket is "done" when it moves to the Done column.
+
+## Working guidelines
+
+- **Scope:** only touch `src/your-storefront.tsx`, `src/product.tsx`, the `ProductCard` component, and supporting files (API/hooks/styles/tests). Do **not** modify the "Read me first!" page (`src/index.tsx`).
+- **Commits:** prefer many small, well-scoped commits — one per ticket (or per sub-task on larger tickets).
+- **AI use:** allowed, but understand every line; be ready to defend decisions live.
+
+---
+
+## Backlog
+
+### Setup
+
+#### T-01 — Extract `fetchProducts` into an API module
+
+- [ ] Move `fetchProducts` from `src/your-storefront.tsx` into `src/api/products.ts`.
+- [ ] Preserve typing and error handling.
+- [ ] Update storefront import.
+
+_Acceptance:_ no behavior change; storefront imports from the new module.
+
+#### T-02 — Wrap the products query in a `useProducts` hook
+
+- [ ] Create `src/hooks/use-products.ts` returning the `useQuery` result.
+- [ ] Replace the inline `useQuery` call in the storefront with the hook.
+
+_Acceptance:_ no `useQuery` calls remain in components.
+
+### Task 1: Product fetch wiring
+
+#### T-03 — Render dynamic product values
+
+- [ ] Inspect the rendered storefront against the API payload.
+- [ ] Confirm no hardcoded values remain in `ProductCard` — every field comes from the `product` prop.
+- [ ] Fix the render loop if any product is missing or duplicated.
+
+_Acceptance:_ every product in the payload appears exactly once with its own data.
+
+#### T-04 — Loading + error UX
+
+- [ ] Replace inline loading text with a skeleton or spinner.
+- [ ] Replace inline error text with an alert-styled component.
+- [ ] Add `role="status"` to loading and `role="alert"` to error.
+
+_Acceptance:_ states are visually distinct and accessible.
+
+### Task 2: Product card styling
+
+#### T-05 — Storefront grid layout
+
+- [ ] Switch `ProductGrid` from `flex` to CSS grid.
+- [ ] Use breakpoints from `utils/media-queries.ts` for responsive columns.
+
+_Acceptance:_ cards reflow cleanly across breakpoints.
+
+#### T-06 — Product card scaffold
+
+- [ ] Extend `src/components/product-card/product-card.styles.tsx` with styled stubs for brand, name, and price.
+- [ ] Wire the new styled components into `ProductCard`.
+
+_Acceptance:_ component structure mirrors the mockup hierarchy.
+
+#### T-07 — Image styling
+
+- [ ] Apply fixed aspect ratio and rounded corners.
+- [ ] Set `object-fit: cover`.
+
+_Acceptance:_ image renders at a consistent size across all cards.
+
+#### T-08 — Typography (brand, name, price)
+
+- [ ] Style brand small / muted.
+- [ ] Style name prominent.
+- [ ] Style price bold.
+
+_Acceptance:_ visual hierarchy matches the mockup.
+
+#### T-09 — Card chrome (spacing, border, hover/focus)
+
+- [ ] Add padding and border radius.
+- [ ] Add hover/focus elevation or background change.
+
+_Acceptance:_ card reads as interactive and clickable.
+
+#### T-10 — Edge cases on the card
+
+- [ ] Truncate long product names.
+- [ ] Add fallbacks for missing `brandName` and empty `prices`.
+
+_Acceptance:_ no overflow or empty UI fragments.
+
+### Task 3: Product Detail Page
+
+#### T-11 — Add `:id` param to the PDP route
+
+- [ ] In `src/app.tsx`, change the `/product` route to `/product/:id` and keep it pointed at `ProductPage`.
+- [ ] Leave the `/` (Read me) and `/your-storefront` routes untouched.
+
+_Acceptance:_ visiting `/product/<id>` mounts `ProductPage` with the id available via `useParams`.
+
+#### T-12 — Link card → PDP
+
+- [ ] Update `<Link to="/product">` in `ProductCard` to `/product/${product.id}`.
+
+_Acceptance:_ clicking a card lands on the matching PDP URL.
+
+#### T-13 — PDP data fetching
+
+- [ ] Add a `getProductById(id)` helper in `src/api/products.ts`.
+- [ ] Add a `useProduct(id)` React Query hook keyed by id.
+- [ ] Consume it in `src/product.tsx`.
+
+_Acceptance:_ direct URL load (`/product/2`) fetches and renders the correct product.
+
+#### T-14 — Replace the PDP placeholder with a real scaffold
+
+- [ ] In `src/product.tsx`, remove the hardcoded placeholder content.
+- [ ] Build a two-column desktop layout (image | details), stacked on mobile.
+
+_Acceptance:_ scaffold renders without crashing, even before content is wired up.
+
+#### T-15 — PDP core fields
+
+- [ ] Render name and brand.
+- [ ] Render photo.
+- [ ] Render price, type, strain.
+
+_Acceptance:_ primary identifiers visible above the fold.
+
+#### T-16 — PDP description + effects
+
+- [ ] Render `descriptionHtml` (sanitized) — required by spec.
+- [ ] Render effects as a list or simple bars — required by spec.
+
+_Acceptance:_ long-form info section complete.
+
+#### T-17 — PDP secondary fields + back link
+
+- [ ] Render THC/CBD content.
+- [ ] Render flavors, weight, options.
+- [ ] Add a "Back to storefront" link pointing to `/your-storefront`.
+
+_Acceptance:_ nothing from the `Product` type is conspicuously missing.
+
+#### T-18 — PDP loading + not-found states
+
+- [ ] Add a loading skeleton.
+- [ ] Add a friendly empty state for unknown ids.
+
+_Acceptance:_ bad ids show a 404-style message instead of crashing.
+
+### Tests
+
+#### T-19 — Storefront test: renders cards from query
+
+- [ ] Mock `fetchProducts`.
+- [ ] Assert N cards render with the right names.
+
+_Acceptance:_ test passes; mirrors `page-wrapper.test.tsx` setup.
+
+#### T-20 — Product card test: fields + link
+
+- [ ] Assert image `alt`, name, brand, and price text.
+- [ ] Assert `href` includes the product id.
+- [ ] Cover the missing-field fallback.
+
+_Acceptance:_ all assertions green.
+
+#### T-21 — PDP test: renders details + not-found
+
+- [ ] Mock the product query.
+- [ ] Assert name, description, and effects render.
+- [ ] Cover the not-found path.
+
+_Acceptance:_ happy path + 404 path both green.
+
+### Polish
+
+#### T-22 — Lint, types, tests clean
+
+- [ ] `pnpm lint` clean.
+- [ ] `pnpm typecheck` clean.
+- [ ] `pnpm test` clean.
+
+_Acceptance:_ zero errors or warnings.
+
+---
+
+## In Progress
+
+_(move tickets here when you start them — limit yourself to 1–2 at a time)_
+
+---
+
+## Done
+
+_(move tickets here when complete)_
