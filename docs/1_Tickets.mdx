@@ -10,6 +10,18 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ---
 
+## In Progress
+
+#### T-01 — Create the products API module
+
+- [x] Create `src/api/products.ts` with a `fetchProducts` helper that hits `get-products`.
+- [ ] Type the response against `Product` and surface a clear error on non-2xx.
+- [ ] Use it from `src/your-storefront.tsx`.
+
+_Acceptance:_ storefront fetches products via the new module.
+
+---
+
 ## Backlog
 
 ### Setup
@@ -174,18 +186,6 @@ _Acceptance:_ happy path + 404 path both green.
 - [ ] Editor shows no TypeScript or unused-import warnings in changed files.
 
 _Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
-
----
-
-## In Progress
-
-#### T-01 — Create the products API module
-
-- [x] Create `src/api/products.ts` with a `fetchProducts` helper that hits `get-products`.
-- [ ] Type the response against `Product` and surface a clear error on non-2xx.
-- [ ] Use it from `src/your-storefront.tsx`.
-
-_Acceptance:_ storefront fetches products via the new module.
 
 ---
 
