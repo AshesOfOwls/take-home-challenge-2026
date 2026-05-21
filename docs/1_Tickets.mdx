@@ -120,15 +120,15 @@ _Acceptance:_ scaffold renders without crashing, even before content is wired up
 
 #### T-15 — PDP core fields
 
-- [ ] Render name and brand.
-- [ ] Render photo.
+- [ ] Render name and brand — required by spec.
+- [ ] Render photo — required by spec.
 - [ ] Render price, type, strain.
 
 _Acceptance:_ primary identifiers visible above the fold.
 
 #### T-16 — PDP description + effects
 
-- [ ] Render `descriptionHtml` (sanitized) — required by spec.
+- [ ] Render the product description — required by spec (prefer `description` for plain text; only use `descriptionHtml` if sanitized).
 - [ ] Render effects — required by spec.
 
 _Acceptance:_ description and effects render.
@@ -175,13 +175,13 @@ _Acceptance:_ happy path + 404 path both green.
 
 ### Polish
 
-#### T-22 — Lint, types, tests clean
+#### T-22 — Types and tests clean
 
-- [ ] `pnpm lint` clean.
-- [ ] `pnpm typecheck` clean.
-- [ ] `pnpm test` clean.
+- [ ] `pnpm exec tsc --noEmit` reports no errors.
+- [ ] `pnpm test` is green.
+- [ ] Editor shows no TypeScript or unused-import warnings in changed files.
 
-_Acceptance:_ zero errors or warnings.
+_Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
 
 ---
 
