@@ -14,14 +14,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ### Setup
 
-#### T-01 — Create the products API module
-
-- [ ] Create `src/api/products.ts` with a `fetchProducts` helper that hits `get-products`.
-- [ ] Type the response against `Product` and surface a clear error on non-2xx.
-- [ ] Use it from `src/your-storefront.tsx`.
-
-_Acceptance:_ storefront fetches products via the new module.
-
 #### T-02 — Add a `useProducts` query hook
 
 - [ ] Create `src/hooks/use-products.ts` that calls `useQuery` with `fetchProducts`.
@@ -187,7 +179,13 @@ _Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script �
 
 ## In Progress
 
-_(move tickets here when you start them — limit yourself to 1–2 at a time)_
+#### T-01 — Create the products API module
+
+- [ ] Create `src/api/products.ts` with a `fetchProducts` helper that hits `get-products`.
+- [ ] Type the response against `Product` and surface a clear error on non-2xx.
+- [ ] Use it from `src/your-storefront.tsx`.
+
+_Acceptance:_ storefront fetches products via the new module.
 
 ---
 
