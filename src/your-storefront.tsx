@@ -5,15 +5,18 @@ import { ProductCard } from './components/product-card';
 import { useProducts } from './hooks/use-products';
 
 export function YourStorefront() {
-  const { data: products } = useProducts();
+  const { data: products, isPending } = useProducts();
 
   return (
     <PageWrapper heading='Your Storefront' icon='menu'>
-      <ProductGrid>
-        {(products ?? []).map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </ProductGrid>
+      {isPending && <div role='status'>Loading products…</div>}
+      {products && (
+        <ProductGrid>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </ProductGrid>
+      )}
     </PageWrapper>
   );
 }
