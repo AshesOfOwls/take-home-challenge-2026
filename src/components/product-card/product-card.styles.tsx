@@ -19,3 +19,9 @@ export const Image = styled.img`
   height: auto;
   border-radius: 5px;
 `;
+
+export const Brand = styled.div``;
+
+export const Name = styled.div``;
+
+export const Price = styled.div``;
