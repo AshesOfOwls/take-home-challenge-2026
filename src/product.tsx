@@ -26,7 +26,17 @@ export function ProductPage() {
           )) ?? "No prices available"}
         </Pricing>
         <Description>{product?.description ?? 'Unknown Description'}</Description>
-        <Metadata />
+        <Metadata>
+          <Effects>
+            {product?.effects
+              ? Object.entries(product.effects).map(([effect, score]) => (
+                  <Effect key={effect}>
+                    {effect}: {score}
+                  </Effect>
+                ))
+              : 'No effects available'}
+          </Effects>
+        </Metadata>
       </DetailsSection>
     </Container>
   );
@@ -74,3 +84,7 @@ const Price = styled.div``;
 const Description = styled.div``;
 
 const Metadata = styled.div``;
+
+const Effects = styled.div``;
+
+const Effect = styled.div``;
