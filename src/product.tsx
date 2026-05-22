@@ -36,6 +36,8 @@ export function ProductPage() {
                 ))
               : 'No effects available'}
           </Effects>
+          <Thc>THC: {product?.thcContent ?? 'Unknown'}</Thc>
+          <Cbd>CBD: {product?.cbdContent ?? 'Unknown'}</Cbd>
         </Metadata>
       </DetailsSection>
     </Container>
@@ -88,3 +90,7 @@ const Metadata = styled.div``;
 const Effects = styled.div``;
 
 const Effect = styled.div``;
+
+const Thc = styled.div``;
+
+const Cbd = styled.div``;
