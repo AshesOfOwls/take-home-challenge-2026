@@ -92,8 +92,9 @@ If a ticket's wording is ambiguous (e.g. "style the card image"), default to the
 ### Tests
 
 - Follow the pattern in `src/components/layout/page-wrapper.test.tsx`: wrap in `BrowserRouter` and `ThemeProvider` via a small helper.
-- Use Testing Library queries that mirror user intent (`getByRole`, `getByText`) over `getByTestId`.
+- **Use `data-testid` to target component containers in tests** (e.g. `<CardContainer data-testid='product-card'>`), and query with `getByTestId` / `findAllByTestId`. This is the preferred pattern for component-level assertions because it isolates the test target from surrounding content and survives copy/structural changes. Text- or role-based queries are acceptable for asserting *content within* a card (e.g. `expect(card).toHaveTextContent(...)`), but the card itself is selected by testid.
 - Mock data fetching at the function level (`vi.mock('../api/products', ...)`) rather than mocking `fetch`.
+- Share test fixtures via `src/test/mocks/` (e.g. `mockProduct(overrides?)`) rather than inlining mocks per test file.
 
 ### TypeScript
 
