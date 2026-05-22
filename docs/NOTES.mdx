@@ -1,0 +1,6 @@
+# Notes
+
+Open questions worth raising in the live interview.
+
+- Why is `brandName` typed as `string | undefined` on `Product` in `data.ts`? In the seed payload, 2 of 3 products have no brand — is this a data quality issue, or are some products legitimately brandless (e.g., bulk flower)?
+- Why is `prices` a bare `number[]` rather than paired with `options`? They're parallel arrays in the seed data (Product 3 has 5 options + 5 prices in matching order) — a `{ option: string; price: number }[]` shape would be safer and avoid relying on index correspondence.

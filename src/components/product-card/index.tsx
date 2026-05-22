@@ -13,9 +13,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     <Link to={'/product'}>
       <CardContainer>
         <Image src={product.image} alt={product.name} title={product.name} />
-        <Brand>{product.brandName}</Brand>
+        <Brand>{product.brandName ?? 'Unknown Brand'}</Brand>
         <Name>{product.name}</Name>
-        <Price>${product.prices[0]}</Price>
+        {product.prices.map((price) => (
+          <Price key={price}>${price}</Price>
+        ))}
       </CardContainer>
     </Link>
   );
