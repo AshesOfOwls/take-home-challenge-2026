@@ -12,27 +12,18 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-18 — PDP loading + not-found states
-
-- [x] Render a loading message while the product is loading.
-- [x] Render a not-found message for unknown ids.
-
-_Acceptance:_ bad ids show a not-found message instead of crashing.
-
----
-
-## Backlog
-
-### Task 3: Product Detail Page
-
-### Tests
-
 #### T-19 — Storefront test: renders cards from query
 
 - [ ] Mock `fetchProducts`.
 - [ ] Assert N cards render with the right names.
 
 _Acceptance:_ test passes; mirrors `page-wrapper.test.tsx` setup.
+
+---
+
+## Backlog
+
+### Tests
 
 #### T-20 — Product card test: fields + link
 
@@ -200,3 +191,10 @@ _Acceptance:_ description and effects render.
 - [x] Add a "Back to storefront" link pointing to `/your-storefront`.
 
 _Acceptance:_ nothing from the `Product` type is conspicuously missing.
+
+#### T-18 — PDP loading + not-found states
+
+- [x] Render a loading message while the product is loading.
+- [x] Render a not-found message for unknown ids.
+
+_Acceptance:_ bad ids show a not-found message instead of crashing.
