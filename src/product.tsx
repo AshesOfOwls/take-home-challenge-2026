@@ -12,7 +12,10 @@ export function ProductPage() {
     <Container>
       <ImageSection />
       <DetailsSection>
-        <Heading>{product?.name}</Heading>
+        <Heading>
+          <Brand>{product?.brandName ?? 'Unknown Brand'}</Brand>
+          <Name>{product?.name ?? 'Unknown Name'}</Name>
+        </Heading>
         <Pricing />
         <Description />
         <Metadata />
@@ -43,6 +46,10 @@ const DetailsSection = styled.div`
 `;
 
 const Heading = styled.div``;
+
+const Brand = styled.div``;
+
+const Name = styled.div``;
 
 const Pricing = styled.div``;
 
