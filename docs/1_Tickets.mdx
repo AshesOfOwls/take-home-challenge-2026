@@ -16,7 +16,7 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 The API only exposes `/get-products` (no per-id endpoint), so the PDP derives its product from the same `['products']` cache the storefront already populated. No second fetch, no new API helper — just React Query's `select` to narrow the cached list to one product. On direct URL load (`/product/2`), the cache miss triggers a single `fetchProducts` call and `select` extracts the match.
 
-- [ ] Add a `useProduct(id)` hook in `src/hooks/use-product.ts` — same `queryKey: ['products']` and `queryFn: fetchProducts` as `useProducts`, with `select: (products) => products.find((p) => p.id === id)`.
+- [x] Add a `useProduct(id)` hook in `src/hooks/use-product.ts` — same `queryKey: ['products']` and `queryFn: fetchProducts` as `useProducts`, with `select: (products) => products.find((p) => p.id === id)`.
 - [ ] Consume it in `src/product.tsx`, reading the id from `useParams`.
 
 _Acceptance:_ navigating from the storefront hits the products cache (no refetch); direct URL load fetches once and renders the correct product; unknown ids resolve `data` to `undefined`.
