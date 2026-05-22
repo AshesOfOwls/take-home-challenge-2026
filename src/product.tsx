@@ -10,7 +10,9 @@ export function ProductPage() {
 
   return (
     <Container>
-      <ImageSection />
+      <ImageSection>
+        <Image src={product?.image} alt={product?.name ?? 'Unknown Name'} />
+      </ImageSection>
       <DetailsSection>
         <Heading>
           <Brand>{product?.brandName ?? 'Unknown Brand'}</Brand>
@@ -36,6 +38,10 @@ const Container = styled.div`
 
 const ImageSection = styled.div`
   flex: 1;
+`;
+
+const Image = styled.img`
+  width: 100%;
 `;
 
 const DetailsSection = styled.div`
