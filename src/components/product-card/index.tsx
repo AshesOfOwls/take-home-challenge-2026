@@ -10,7 +10,7 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <Link to={'/product'}>
+    <Link to={`/product/${product.id}`}>
       <CardContainer>
         <Image src={product.image} alt={product.name} title={product.name} />
         <Brand>{product.brandName ?? 'Unknown Brand'}</Brand>
