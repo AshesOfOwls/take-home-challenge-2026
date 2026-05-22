@@ -17,8 +17,14 @@ export function ProductPage() {
         <Heading>
           <Brand>{product?.brandName ?? 'Unknown Brand'}</Brand>
           <Name>{product?.name ?? 'Unknown Name'}</Name>
+          <Type>{product?.type ?? 'Unknown Type'}</Type>
+          <Strain>{product?.strainType ?? 'Unknown Strain'}</Strain>
         </Heading>
-        <Pricing />
+        <Pricing>
+          {product?.prices?.map((price) => (
+            <Price key={price}>${price}</Price>
+          )) ?? "No prices available"}
+        </Pricing>
         <Description />
         <Metadata />
       </DetailsSection>
@@ -57,7 +63,13 @@ const Brand = styled.div``;
 
 const Name = styled.div``;
 
+const Type = styled.div``;
+
+const Strain = styled.div``;
+
 const Pricing = styled.div``;
+
+const Price = styled.div``;
 
 const Description = styled.div``;
 
