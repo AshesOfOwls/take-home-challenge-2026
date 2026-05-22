@@ -38,6 +38,17 @@ export function ProductPage() {
           </Effects>
           <Thc>THC: {product?.thcContent ?? 'Unknown'}</Thc>
           <Cbd>CBD: {product?.cbdContent ?? 'Unknown'}</Cbd>
+          <Flavors>
+            {product?.flavors?.map((flavor) => (
+              <Flavor key={flavor}>{flavor}</Flavor>
+            )) ?? 'No flavors available'}
+          </Flavors>
+          <Weight>Weight: {product?.weight ?? 'Unknown'}</Weight>
+          <Options>
+            {product?.options?.map((option) => (
+              <Option key={option}>{option}</Option>
+            )) ?? 'No options available'}
+          </Options>
         </Metadata>
       </DetailsSection>
     </Container>
@@ -94,3 +105,13 @@ const Effect = styled.div``;
 const Thc = styled.div``;
 
 const Cbd = styled.div``;
+
+const Flavors = styled.div``;
+
+const Flavor = styled.div``;
+
+const Weight = styled.div``;
+
+const Options = styled.div``;
+
+const Option = styled.div``;
