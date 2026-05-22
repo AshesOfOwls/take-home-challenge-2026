@@ -23,6 +23,10 @@ export const Image = styled.img`
 
 export const Brand = styled.div``;
 
-export const Name = styled.div``;
+export const Name = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export const Price = styled.div``;
