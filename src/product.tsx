@@ -13,7 +13,8 @@ export function ProductPage() {
     <PageWrapper heading='Product' icon='menu'>
       <BackLink to='/your-storefront'>Back to storefront</BackLink>
       {isPending && <div role='status'>Loading product…</div>}
-      {!isPending && (
+      {!isPending && !product && <div role='alert'>Product not found.</div>}
+      {product && (
         <Container>
           <ImageSection>
             <Image src={product?.image} alt={product?.name ?? 'Unknown Name'} />
