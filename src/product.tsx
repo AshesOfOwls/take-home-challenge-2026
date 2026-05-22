@@ -25,7 +25,7 @@ export function ProductPage() {
             <Price key={price}>${price}</Price>
           )) ?? "No prices available"}
         </Pricing>
-        <Description />
+        <Description>{product?.description ?? 'Unknown Description'}</Description>
         <Metadata />
       </DetailsSection>
     </Container>
