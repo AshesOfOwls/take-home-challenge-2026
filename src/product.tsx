@@ -1,9 +1,15 @@
 import styled from '@emotion/styled';
+import { useParams } from 'react-router-dom';
+
+import { useProduct } from './hooks/use-product';
 
 export function ProductPage() {
+  const { id } = useParams<{ id: string }>();
+  const { data: product } = useProduct(id ?? '');
+
   return (
     <Container>
-      <Header>(Placeholder) Cheeba Chews | Sativa Chocolate Taffy</Header>
+      <Header>{product?.name}</Header>
       <Divider />
       <Description>
         This is a placeholder product detail page. It will contain the description, allotment details, and other product
