@@ -16,7 +16,8 @@ export const CardContainer = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-radius: 5px;
 `;
 
