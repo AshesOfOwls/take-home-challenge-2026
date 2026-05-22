@@ -11,7 +11,7 @@ type ProductCardProps = {
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link to={`/product/${product.id}`}>
-      <CardContainer>
+      <CardContainer data-testid='product-card'>
         <Image src={product.image} alt={product.name} title={product.name} />
         <Brand>{product.brandName ?? 'Unknown Brand'}</Brand>
         <Name>{product.name}</Name>
