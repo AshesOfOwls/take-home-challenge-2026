@@ -12,22 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-22 — Types and tests clean
-
-- [ ] `pnpm exec tsc --noEmit` reports no errors.
-- [ ] `pnpm test` is green.
-- [ ] Editor shows no TypeScript or unused-import warnings in changed files.
-
-_Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
-
----
-
-## Backlog
-
-### Polish
-
-### Manual styling
-
 #### T-23 — Manual styling pass
 
 Catalog of visual styling owned by the candidate, not the AI. Scaffolding (empty styled stubs, layout primitives, breakpoints, placeholder values) is in place; the work here is typography, color, spacing, and visual polish.
@@ -40,6 +24,12 @@ Catalog of visual styling owned by the candidate, not the AI. Scaffolding (empty
 - [ ] PDP layout and typography in `src/product.tsx` — once T-14 scaffold lands.
 
 _Acceptance:_ every visual decision in the app is the candidate's, not the AI's.
+
+---
+
+## Backlog
+
+_(empty — all remaining work is the manual styling pass in `## In Progress`)_
 
 ---
 
@@ -196,3 +186,11 @@ _Acceptance:_ all assertions green.
 - [x] Cover the not-found path.
 
 _Acceptance:_ happy path + 404 path both green.
+
+#### T-22 — Types and tests clean
+
+- [x] `pnpm exec tsc --noEmit` reports no errors.
+- [x] `pnpm test` is green.
+- [x] Editor shows no TypeScript or unused-import warnings in changed files.
+
+_Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
