@@ -22,7 +22,7 @@ export function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/your-storefront' element={<YourStorefront />} />
-              <Route path='/product' element={<ProductPage />} />
+              <Route path='/product/:id' element={<ProductPage />} />
             </Routes>
           </Wrapper>
         </ThemeProvider>
