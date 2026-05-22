@@ -12,20 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-21 — PDP test: renders details + not-found
-
-- [x] Mock the product query.
-- [x] Assert name, description, and effects render.
-- [x] Cover the not-found path.
-
-_Acceptance:_ happy path + 404 path both green.
-
----
-
-## Backlog
-
-### Polish
-
 #### T-22 — Types and tests clean
 
 - [ ] `pnpm exec tsc --noEmit` reports no errors.
@@ -33,6 +19,12 @@ _Acceptance:_ happy path + 404 path both green.
 - [ ] Editor shows no TypeScript or unused-import warnings in changed files.
 
 _Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
+
+---
+
+## Backlog
+
+### Polish
 
 ### Manual styling
 
@@ -196,3 +188,11 @@ _Acceptance:_ test passes; mirrors `page-wrapper.test.tsx` setup.
 - [x] Cover the missing-field fallback.
 
 _Acceptance:_ all assertions green.
+
+#### T-21 — PDP test: renders details + not-found
+
+- [x] Mock the product query.
+- [x] Assert name, description, and effects render.
+- [x] Cover the not-found path.
+
+_Acceptance:_ happy path + 404 path both green.
