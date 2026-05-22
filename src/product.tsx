@@ -7,48 +7,51 @@ import { useProduct } from './hooks/use-product';
 
 export function ProductPage() {
   const { id } = useParams<{ id: string }>();
-  const { data: product } = useProduct(id ?? '');
+  const { data: product, isPending } = useProduct(id ?? '');
 
   return (
     <PageWrapper heading='Product' icon='menu'>
       <BackLink to='/your-storefront'>Back to storefront</BackLink>
-      <Container>
-        <ImageSection>
-          <Image src={product?.image} alt={product?.name ?? 'Unknown Name'} />
-        </ImageSection>
-        <DetailsSection>
-          <Heading>
-            <Brand>{product?.brandName ?? 'Unknown Brand'}</Brand>
-            <Name>{product?.name ?? 'Unknown Name'}</Name>
-            <Type>{product?.type ?? 'Unknown Type'}</Type>
-            <Strain>{product?.strainType ?? 'Unknown Strain'}</Strain>
-          </Heading>
-          <Pricing>
-            {product?.prices?.map((price) => <Price key={price}>${price}</Price>) ?? 'No prices available'}
-          </Pricing>
-          <Description>{product?.description ?? 'Unknown Description'}</Description>
-          <Metadata>
-            <Effects>
-              {product?.effects
-                ? Object.entries(product.effects).map(([effect, score]) => (
-                    <Effect key={effect}>
-                      {effect}: {score}
-                    </Effect>
-                  ))
-                : 'No effects available'}
-            </Effects>
-            <Thc>THC: {product?.thcContent ?? 'Unknown'}</Thc>
-            <Cbd>CBD: {product?.cbdContent ?? 'Unknown'}</Cbd>
-            <Flavors>
-              {product?.flavors?.map((flavor) => <Flavor key={flavor}>{flavor}</Flavor>) ?? 'No flavors available'}
-            </Flavors>
-            <Weight>Weight: {product?.weight ?? 'Unknown'}</Weight>
-            <Options>
-              {product?.options?.map((option) => <Option key={option}>{option}</Option>) ?? 'No options available'}
-            </Options>
-          </Metadata>
-        </DetailsSection>
-      </Container>
+      {isPending && <div role='status'>Loading product…</div>}
+      {!isPending && (
+        <Container>
+          <ImageSection>
+            <Image src={product?.image} alt={product?.name ?? 'Unknown Name'} />
+          </ImageSection>
+          <DetailsSection>
+            <Heading>
+              <Brand>{product?.brandName ?? 'Unknown Brand'}</Brand>
+              <Name>{product?.name ?? 'Unknown Name'}</Name>
+              <Type>{product?.type ?? 'Unknown Type'}</Type>
+              <Strain>{product?.strainType ?? 'Unknown Strain'}</Strain>
+            </Heading>
+            <Pricing>
+              {product?.prices?.map((price) => <Price key={price}>${price}</Price>) ?? 'No prices available'}
+            </Pricing>
+            <Description>{product?.description ?? 'Unknown Description'}</Description>
+            <Metadata>
+              <Effects>
+                {product?.effects
+                  ? Object.entries(product.effects).map(([effect, score]) => (
+                      <Effect key={effect}>
+                        {effect}: {score}
+                      </Effect>
+                    ))
+                  : 'No effects available'}
+              </Effects>
+              <Thc>THC: {product?.thcContent ?? 'Unknown'}</Thc>
+              <Cbd>CBD: {product?.cbdContent ?? 'Unknown'}</Cbd>
+              <Flavors>
+                {product?.flavors?.map((flavor) => <Flavor key={flavor}>{flavor}</Flavor>) ?? 'No flavors available'}
+              </Flavors>
+              <Weight>Weight: {product?.weight ?? 'Unknown'}</Weight>
+              <Options>
+                {product?.options?.map((option) => <Option key={option}>{option}</Option>) ?? 'No options available'}
+              </Options>
+            </Metadata>
+          </DetailsSection>
+        </Container>
+      )}
     </PageWrapper>
   );
 }
