@@ -12,27 +12,18 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-13 — PDP data fetching
-
-The API only exposes `/get-products` (no per-id endpoint), so the PDP derives its product from the same `['products']` cache the storefront already populated. No second fetch, no new API helper — just React Query's `select` to narrow the cached list to one product. On direct URL load (`/product/2`), the cache miss triggers a single `fetchProducts` call and `select` extracts the match.
-
-- [x] Add a `useProduct(id)` hook in `src/hooks/use-product.ts` — same `queryKey: ['products']` and `queryFn: fetchProducts` as `useProducts`, with `select: (products) => products.find((p) => p.id === id)`.
-- [x] Consume it in `src/product.tsx`, reading the id from `useParams`.
-
-_Acceptance:_ navigating from the storefront hits the products cache (no refetch); direct URL load fetches once and renders the correct product; unknown ids resolve `data` to `undefined`.
-
----
-
-## Backlog
-
-### Task 3: Product Detail Page
-
 #### T-14 — Replace the PDP placeholder with a real scaffold
 
 - [ ] In `src/product.tsx`, remove the hardcoded placeholder content.
 - [ ] Lay out sections for the product image and details.
 
 _Acceptance:_ scaffold renders without crashing, even before content is wired up.
+
+---
+
+## Backlog
+
+### Task 3: Product Detail Page
 
 #### T-15 — PDP core fields
 
@@ -200,3 +191,12 @@ _Acceptance:_ visiting `/product/<id>` mounts `ProductPage` with the id availabl
 - [x] Update `<Link to="/product">` in `ProductCard` to `/product/${product.id}`.
 
 _Acceptance:_ clicking a card lands on the matching PDP URL.
+
+#### T-13 — PDP data fetching
+
+The API only exposes `/get-products` (no per-id endpoint), so the PDP derives its product from the same `['products']` cache the storefront already populated. No second fetch, no new API helper — just React Query's `select` to narrow the cached list to one product. On direct URL load (`/product/2`), the cache miss triggers a single `fetchProducts` call and `select` extracts the match.
+
+- [x] Add a `useProduct(id)` hook in `src/hooks/use-product.ts` — same `queryKey: ['products']` and `queryFn: fetchProducts` as `useProducts`, with `select: (products) => products.find((p) => p.id === id)`.
+- [x] Consume it in `src/product.tsx`, reading the id from `useParams`.
+
+_Acceptance:_ navigating from the storefront hits the products cache (no refetch); direct URL load fetches once and renders the correct product; unknown ids resolve `data` to `undefined`.
