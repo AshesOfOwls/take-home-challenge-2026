@@ -12,20 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-20 — Product card test: fields + link
-
-- [x] Assert image `alt`, name, brand, and price text.
-- [x] Assert `href` includes the product id.
-- [x] Cover the missing-field fallback.
-
-_Acceptance:_ all assertions green.
-
----
-
-## Backlog
-
-### Tests
-
 #### T-21 — PDP test: renders details + not-found
 
 - [ ] Mock the product query.
@@ -33,6 +19,10 @@ _Acceptance:_ all assertions green.
 - [ ] Cover the not-found path.
 
 _Acceptance:_ happy path + 404 path both green.
+
+---
+
+## Backlog
 
 ### Polish
 
@@ -198,3 +188,11 @@ _Acceptance:_ bad ids show a not-found message instead of crashing.
 - [x] Assert N cards render with the right names.
 
 _Acceptance:_ test passes; mirrors `page-wrapper.test.tsx` setup.
+
+#### T-20 — Product card test: fields + link
+
+- [x] Assert image `alt`, name, brand, and price text.
+- [x] Assert `href` includes the product id.
+- [x] Cover the missing-field fallback.
+
+_Acceptance:_ all assertions green.
