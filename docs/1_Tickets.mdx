@@ -12,14 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-_(empty)_
-
----
-
-## Backlog
-
-### Search (interview round 2 — task 2)
-
 #### T-27 — Plumb `searchText` through the products query
 
 The server now accepts an optional `searchText` query param on `/get-products` and filters by `product.name` (case-insensitive substring). Wire that through the data layer first, without touching the UI.
@@ -30,6 +22,12 @@ The server now accepts an optional `searchText` query param on `/get-products` a
 - [ ] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
 
 _Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; different `text` values cache independently; PDP cache behavior unchanged.
+
+---
+
+## Backlog
+
+### Search (interview round 2 — task 2)
 
 #### T-28 — Search input on the storefront with debounced filtering
 
