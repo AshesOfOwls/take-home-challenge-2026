@@ -12,24 +12,21 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-_(empty)_
-
----
-
-## Backlog
-
-### Cart (interview round 2)
-
 #### T-24 — Cart state context
 
 The cart needs to be read from the storefront (for the summary) and written to from the product card (button). A small typed Context with a `useCart` hook keeps the two surfaces decoupled and leaves room for the PDP to add items later.
 
 - [ ] Create `src/hooks/use-cart.tsx` exporting a `CartProvider` and a `useCart` hook.
 - [ ] State shape: `Record<string, number>` keyed by `product.id`; `addItem(product: Product)` increments the count for that id.
-- [ ] `useCart` throws a clear error when used outside `<CartProvider>`.
 - [ ] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
 
 _Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provider mounted app-level; existing tests still pass.
+
+---
+
+## Backlog
+
+### Cart (interview round 2)
 
 #### T-25 — "Add to cart" button on the product card
 
@@ -46,14 +43,6 @@ _Acceptance:_ clicking the button increments the cart entry for that product; cl
 - [ ] Empty cart renders nothing (no placeholder text unless specified).
 
 _Acceptance:_ clicking buttons updates the visible summary in real time; ordering and content match the spec example.
-
-#### T-27 — Cart tests
-
-- [ ] `use-cart.test.tsx`: adding the same product twice yields qty 2; two different products yield two entries; `useCart` throws outside the provider.
-- [ ] Extend `product-card.test.tsx`: clicking "Add to cart" invokes `addItem` (via a spy/mocked provider) and does not navigate (no `location` change).
-- [ ] Extend `your-storefront.test.tsx`: click two different cards' buttons; assert summary lines render the expected `Name: Quantity` text.
-
-_Acceptance:_ all new tests pass; no regressions.
 
 ---
 
