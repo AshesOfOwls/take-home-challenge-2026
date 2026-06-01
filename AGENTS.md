@@ -66,6 +66,7 @@ There is no `lint` or `typecheck` script. Treat TypeScript errors surfaced by th
 - Co-locate Emotion styles in a sibling `*.styles.tsx` file (see `src/components/product-card/product-card.styles.tsx`).
 - Prop types declared inline (`type FooProps = { ... }`) or exported when reused by tests.
 - Prefer the `Product` type from `data.ts` over redefining shapes.
+- **No premature optimization with React perf hooks.** Do not reach for `useCallback`, `useMemo`, or `React.memo` by default. Only add them when there's a concrete reason — a profiled re-render problem, an effect dependency loop, or a measurably expensive computation. "Keeping the context value referentially stable" or "avoiding unnecessary re-renders" are not, on their own, sufficient justifications. Plain inline functions and object literals are the default; readability beats hypothetical performance. (Functional state updates like `setX(prev => ...)` are a *correctness* pattern, not an optimization — those are fine.)
 
 ### Styling — read this carefully
 
@@ -109,6 +110,7 @@ If a ticket's wording is ambiguous (e.g. "style the card image"), default to the
 - Don't write comments that narrate what the code does — only intent or tradeoffs.
 - Don't add tooling (ESLint, Prettier configs, husky, etc.) unless explicitly requested.
 - Don't introduce state libraries — React Query handles server state; local state is `useState`.
+- Don't sprinkle `useCallback` / `useMemo` / `React.memo` to "stabilize references" or "prevent re-renders" — see the Components conventions for the rule.
 
 ## Defensibility checklist (run before declaring a ticket done)
 
