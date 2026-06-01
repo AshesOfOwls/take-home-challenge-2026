@@ -12,20 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-25 — "Add to cart" button on the product card
-
-- [x] Add `<button type="button">Add to cart</button>` inside `CardContainer` (unstyled per spec).
-- [x] On click, call `useCart().addItem(product)` and stop propagation so the surrounding `<Link>` does not navigate to the PDP.
-- [x] No visual styling.
-
-_Acceptance:_ clicking the button increments the cart entry for that product; clicking it does not navigate.
-
----
-
-## Backlog
-
-### Cart (interview round 2)
-
 #### T-26 — Cart summary above the grid
 
 - [ ] In `src/your-storefront.tsx`, render a `<CartSummary />` block above `ProductGrid`.
@@ -33,6 +19,12 @@ _Acceptance:_ clicking the button increments the cart entry for that product; cl
 - [ ] Empty cart renders nothing (no placeholder text unless specified).
 
 _Acceptance:_ clicking buttons updates the visible summary in real time; ordering and content match the spec example.
+
+---
+
+## Backlog
+
+_(empty)_
 
 ---
 
@@ -207,6 +199,14 @@ The cart needs to be read from the storefront (for the summary) and written to f
 - [x] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
 
 _Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provider mounted app-level; existing tests still pass.
+
+#### T-25 — "Add to cart" button on the product card
+
+- [x] Add `<button type="button">Add to cart</button>` inside `CardContainer` (unstyled per spec).
+- [x] On click, call `useCart().addItem(product)` and stop propagation so the surrounding `<Link>` does not navigate to the PDP.
+- [x] No visual styling.
+
+_Acceptance:_ clicking the button increments the cart entry for that product; clicking it does not navigate.
 
 #### T-23 — Manual styling pass _(deferred)_
 
