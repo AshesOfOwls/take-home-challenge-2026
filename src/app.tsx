@@ -9,23 +9,26 @@ import { YourStorefront } from './your-storefront';
 import { theme } from 'utils/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ProductPage } from './product';
+import { CartProvider } from './hooks/use-cart';
 
 export function App() {
   const queryClient = new QueryClient();
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Wrapper>
-            <Navigation />
-            <Routes>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/your-storefront' element={<YourStorefront />} />
-              <Route path='/product/:id' element={<ProductPage />} />
-            </Routes>
-          </Wrapper>
-        </ThemeProvider>
+        <CartProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Wrapper>
+              <Navigation />
+              <Routes>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/your-storefront' element={<YourStorefront />} />
+                <Route path='/product/:id' element={<ProductPage />} />
+              </Routes>
+            </Wrapper>
+          </ThemeProvider>
+        </CartProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

@@ -16,9 +16,9 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 The cart needs to be read from the storefront (for the summary) and written to from the product card (button). A small typed Context with a `useCart` hook keeps the two surfaces decoupled and leaves room for the PDP to add items later.
 
-- [ ] Create `src/hooks/use-cart.tsx` exporting a `CartProvider` and a `useCart` hook.
-- [ ] State shape: `Record<string, number>` keyed by `product.id`; `addItem(product: Product)` increments the count for that id.
-- [ ] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
+- [x] Create `src/hooks/use-cart.tsx` exporting a `CartProvider` and a `useCart` hook.
+- [x] State shape: `Record<string, number>` keyed by `product.id`; `addItem(product: Product)` increments the count for that id.
+- [x] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
 
 _Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provider mounted app-level; existing tests still pass.
 
