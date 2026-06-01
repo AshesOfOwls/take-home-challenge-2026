@@ -12,22 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-24 — Cart state context
-
-The cart needs to be read from the storefront (for the summary) and written to from the product card (button). A small typed Context with a `useCart` hook keeps the two surfaces decoupled and leaves room for the PDP to add items later.
-
-- [x] Create `src/hooks/use-cart.tsx` exporting a `CartProvider` and a `useCart` hook.
-- [x] State shape: `Record<string, number>` keyed by `product.id`; `addItem(product: Product)` increments the count for that id.
-- [x] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
-
-_Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provider mounted app-level; existing tests still pass.
-
----
-
-## Backlog
-
-### Cart (interview round 2)
-
 #### T-25 — "Add to cart" button on the product card
 
 - [ ] Add `<button type="button">Add to cart</button>` inside `CardContainer` (unstyled per spec).
@@ -35,6 +19,12 @@ _Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provide
 - [ ] No visual styling.
 
 _Acceptance:_ clicking the button increments the cart entry for that product; clicking it does not navigate.
+
+---
+
+## Backlog
+
+### Cart (interview round 2)
 
 #### T-26 — Cart summary above the grid
 
@@ -207,6 +197,16 @@ _Acceptance:_ happy path + 404 path both green.
 - [x] Editor shows no TypeScript or unused-import warnings in changed files.
 
 _Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
+
+#### T-24 — Cart state context
+
+The cart needs to be read from the storefront (for the summary) and written to from the product card (button). A small typed Context with a `useCart` hook keeps the two surfaces decoupled and leaves room for the PDP to add items later.
+
+- [x] Create `src/hooks/use-cart.tsx` exporting a `CartProvider` and a `useCart` hook.
+- [x] State shape: `Record<string, number>` keyed by `product.id`; `addItem(product: Product)` increments the count for that id.
+- [x] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
+
+_Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provider mounted app-level; existing tests still pass.
 
 #### T-23 — Manual styling pass _(deferred)_
 
