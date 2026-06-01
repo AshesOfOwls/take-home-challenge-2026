@@ -12,15 +12,7 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-28 — Search input on the storefront with debounced filtering
-
-- [x] Add a controlled `<input type='text' />` at the top of `src/your-storefront.tsx` (above `<CartSummary />`) with `placeholder='Search products…'` and an `aria-label`.
-- [x] Local `useState` owns the raw input value.
-- [x] Create `src/hooks/use-debounced-value.ts` exporting `useDebouncedValue(value, delayMs = 300)` — returns the value after `delayMs` of stillness.
-- [x] Pass the debounced value into `useProducts(debouncedSearch)`.
-- [x] No styling beyond layout primitives.
-
-_Acceptance:_ typing in the input triggers at most one request per pause (~300ms); the grid updates accordingly; clearing the input restores the full list.
+_(empty)_
 
 ---
 
@@ -228,6 +220,16 @@ The server now accepts an optional `searchText` query param on `/get-products` a
 - [x] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
 
 _Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; different `text` values cache independently; PDP cache behavior unchanged.
+
+#### T-28 — Search input on the storefront with debounced filtering
+
+- [x] Add a controlled `<input type='text' />` at the top of `src/your-storefront.tsx` (above `<CartSummary />`) with `placeholder='Search products…'` and an `aria-label`.
+- [x] Local `useState` owns the raw input value.
+- [x] Create `src/hooks/use-debounced-value.ts` exporting `useDebouncedValue(value, delayMs = 300)` — returns the value after `delayMs` of stillness.
+- [x] Pass the debounced value into `useProducts(debouncedSearch)`.
+- [x] No styling beyond layout primitives.
+
+_Acceptance:_ typing in the input triggers at most one request per pause (~300ms); the grid updates accordingly; clearing the input restores the full list.
 
 #### T-23 — Manual styling pass _(deferred)_
 
