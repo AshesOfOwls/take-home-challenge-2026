@@ -16,10 +16,10 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 The server now accepts an optional `searchText` query param on `/get-products` and filters by `product.name` (case-insensitive substring). Wire that through the data layer first, without touching the UI.
 
-- [ ] In `src/api/products.ts`, change `fetchProducts(searchText?: string)` to append `?searchText=<encoded>` when truthy. Empty/undefined returns the full list as before.
-- [ ] In `src/hooks/use-products.ts`, accept `searchText?: string`, include it in the `queryKey` (e.g. `['products', searchText ?? '']`), and pass it to `fetchProducts`.
-- [ ] In `src/hooks/use-product.ts`, query the empty-search cache key `['products', '']` so the PDP shares cache with the unsearched storefront load (and never re-uses a filtered list).
-- [ ] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
+- [x] In `src/api/products.ts`, change `fetchProducts(searchText?: string)` to append `?searchText=<encoded>` when truthy. Empty/undefined returns the full list as before.
+- [x] In `src/hooks/use-products.ts`, accept `searchText?: string`, include it in the `queryKey` (e.g. `['products', searchText ?? '']`), and pass it to `fetchProducts`.
+- [x] In `src/hooks/use-product.ts`, query the empty-search cache key `['products', '']` so the PDP shares cache with the unsearched storefront load (and never re-uses a filtered list).
+- [x] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
 
 _Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; different `text` values cache independently; PDP cache behavior unchanged.
 
