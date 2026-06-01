@@ -6,6 +6,15 @@ const app = express();
 
 app.use(cors());
 app.get('/get-products', (req, res) => {
-  res.json(data.products);
+  const { searchText } = req.query;
+
+  if (searchText && typeof searchText === 'string') {
+    const filteredData = data.products.filter((product: any) => 
+      product.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    res.json(filteredData);
+  } else {
+    res.json(data.products);
+  }
 });
 app.listen(PORT, () => console.log(`Listening on port ${PORT}!`));
