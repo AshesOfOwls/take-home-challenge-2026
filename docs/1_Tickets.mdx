@@ -18,7 +18,28 @@ _(empty)_
 
 ## Backlog
 
-_(empty)_
+### Search (interview round 2 — task 2)
+
+#### T-27 — Plumb `searchText` through the products query
+
+The server now accepts an optional `searchText` query param on `/get-products` and filters by `product.name` (case-insensitive substring). Wire that through the data layer first, without touching the UI.
+
+- [ ] In `src/api/products.ts`, change `fetchProducts(searchText?: string)` to append `?searchText=<encoded>` when truthy. Empty/undefined returns the full list as before.
+- [ ] In `src/hooks/use-products.ts`, accept `searchText?: string`, include it in the `queryKey` (e.g. `['products', searchText ?? '']`), and pass it to `fetchProducts`.
+- [ ] In `src/hooks/use-product.ts`, query the empty-search cache key `['products', '']` so the PDP shares cache with the unsearched storefront load (and never re-uses a filtered list).
+- [ ] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
+
+_Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; different `text` values cache independently; PDP cache behavior unchanged.
+
+#### T-28 — Search input on the storefront with debounced filtering
+
+- [ ] Add a controlled `<input type='text' />` at the top of `src/your-storefront.tsx` (above `<CartSummary />`) with `placeholder='Search products…'` and an `aria-label`.
+- [ ] Local `useState` owns the raw input value.
+- [ ] Create `src/hooks/use-debounced-value.ts` exporting `useDebouncedValue(value, delayMs = 300)` — returns the value after `delayMs` of stillness.
+- [ ] Pass the debounced value into `useProducts(debouncedSearch)`.
+- [ ] No styling beyond layout primitives.
+
+_Acceptance:_ typing in the input triggers at most one request per pause (~300ms); the grid updates accordingly; clearing the input restores the full list.
 
 ---
 
