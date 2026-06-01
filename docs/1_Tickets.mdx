@@ -14,11 +14,11 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 #### T-28 — Search input on the storefront with debounced filtering
 
-- [ ] Add a controlled `<input type='text' />` at the top of `src/your-storefront.tsx` (above `<CartSummary />`) with `placeholder='Search products…'` and an `aria-label`.
-- [ ] Local `useState` owns the raw input value.
-- [ ] Create `src/hooks/use-debounced-value.ts` exporting `useDebouncedValue(value, delayMs = 300)` — returns the value after `delayMs` of stillness.
-- [ ] Pass the debounced value into `useProducts(debouncedSearch)`.
-- [ ] No styling beyond layout primitives.
+- [x] Add a controlled `<input type='text' />` at the top of `src/your-storefront.tsx` (above `<CartSummary />`) with `placeholder='Search products…'` and an `aria-label`.
+- [x] Local `useState` owns the raw input value.
+- [x] Create `src/hooks/use-debounced-value.ts` exporting `useDebouncedValue(value, delayMs = 300)` — returns the value after `delayMs` of stillness.
+- [x] Pass the debounced value into `useProducts(debouncedSearch)`.
+- [x] No styling beyond layout primitives.
 
 _Acceptance:_ typing in the input triggers at most one request per pause (~300ms); the grid updates accordingly; clearing the input restores the full list.
 
