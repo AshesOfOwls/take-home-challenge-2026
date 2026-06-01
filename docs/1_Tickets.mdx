@@ -12,24 +12,48 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-23 — Manual styling pass
-
-Catalog of visual styling owned by the candidate, not the AI. Scaffolding (empty styled stubs, layout primitives, breakpoints, placeholder values) is in place; the work here is typography, color, spacing, and visual polish.
-
-- [ ] `Brand`, `Name`, `Price` in `src/components/product-card/product-card.styles.tsx` — typography, alignment.
-- [ ] `Image` in `src/components/product-card/product-card.styles.tsx` — aspect-ratio, object-fit if needed.
-- [ ] `CardContainer` in `src/components/product-card/product-card.styles.tsx` — refine dimensions, border, padding, hover/focus visual treatment.
-- [ ] `ProductGrid` in `src/your-storefront.tsx` — refine gap, column widths, breakpoint thresholds.
-- [ ] Loading and error `<div>`s in `src/your-storefront.tsx` — typography, spacing, placement.
-- [ ] PDP layout and typography in `src/product.tsx` — once T-14 scaffold lands.
-
-_Acceptance:_ every visual decision in the app is the candidate's, not the AI's.
+_(empty)_
 
 ---
 
 ## Backlog
 
-_(empty — all remaining work is the manual styling pass in `## In Progress`)_
+### Cart (interview round 2)
+
+#### T-24 — Cart state context
+
+The cart needs to be read from the storefront (for the summary) and written to from the product card (button). A small typed Context with a `useCart` hook keeps the two surfaces decoupled and leaves room for the PDP to add items later.
+
+- [ ] Create `src/hooks/use-cart.tsx` exporting a `CartProvider` and a `useCart` hook.
+- [ ] State shape: `Record<string, number>` keyed by `product.id`; `addItem(product: Product)` increments the count for that id.
+- [ ] `useCart` throws a clear error when used outside `<CartProvider>`.
+- [ ] Wrap the `<Routes>` tree in `src/app.tsx` with `<CartProvider>` (inside `QueryClientProvider`, outside `Routes`).
+
+_Acceptance:_ `useCart` exposes `items` (record) and `addItem(product)`; provider mounted app-level; existing tests still pass.
+
+#### T-25 — "Add to cart" button on the product card
+
+- [ ] Add `<button type="button">Add to cart</button>` inside `CardContainer` (unstyled per spec).
+- [ ] On click, call `useCart().addItem(product)` and stop propagation so the surrounding `<Link>` does not navigate to the PDP.
+- [ ] No visual styling.
+
+_Acceptance:_ clicking the button increments the cart entry for that product; clicking it does not navigate.
+
+#### T-26 — Cart summary above the grid
+
+- [ ] In `src/your-storefront.tsx`, render a `<CartSummary />` block above `ProductGrid`.
+- [ ] For each entry in `items`, look up the product name from the `useProducts()` query data and render `Name: Quantity` (one line per entry).
+- [ ] Empty cart renders nothing (no placeholder text unless specified).
+
+_Acceptance:_ clicking buttons updates the visible summary in real time; ordering and content match the spec example.
+
+#### T-27 — Cart tests
+
+- [ ] `use-cart.test.tsx`: adding the same product twice yields qty 2; two different products yield two entries; `useCart` throws outside the provider.
+- [ ] Extend `product-card.test.tsx`: clicking "Add to cart" invokes `addItem` (via a spy/mocked provider) and does not navigate (no `location` change).
+- [ ] Extend `your-storefront.test.tsx`: click two different cards' buttons; assert summary lines render the expected `Name: Quantity` text.
+
+_Acceptance:_ all new tests pass; no regressions.
 
 ---
 
@@ -194,3 +218,18 @@ _Acceptance:_ happy path + 404 path both green.
 - [x] Editor shows no TypeScript or unused-import warnings in changed files.
 
 _Acceptance:_ no type errors; all tests pass. (There is no `pnpm lint` script — rely on `tsc` and editor diagnostics.)
+
+#### T-23 — Manual styling pass _(deferred)_
+
+Catalog of visual styling owned by the candidate, not the AI. Scaffolding (empty styled stubs, layout primitives, breakpoints, placeholder values) is in place; the work here is typography, color, spacing, and visual polish.
+
+- [ ] `Brand`, `Name`, `Price` in `src/components/product-card/product-card.styles.tsx` — typography, alignment.
+- [ ] `Image` in `src/components/product-card/product-card.styles.tsx` — aspect-ratio, object-fit if needed.
+- [ ] `CardContainer` in `src/components/product-card/product-card.styles.tsx` — refine dimensions, border, padding, hover/focus visual treatment.
+- [ ] `ProductGrid` in `src/your-storefront.tsx` — refine gap, column widths, breakpoint thresholds.
+- [ ] Loading and error `<div>`s in `src/your-storefront.tsx` — typography, spacing, placement.
+- [ ] PDP layout and typography in `src/product.tsx` — once T-14 scaffold lands.
+
+_Acceptance:_ every visual decision in the app is the candidate's, not the AI's.
+
+_Status:_ closed without completion — moving on to interview round 2 (cart work, T-24+). Visual polish remains the candidate's domain and is intentionally out of the AI's scope.
