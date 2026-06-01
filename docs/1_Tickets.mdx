@@ -12,23 +12,6 @@ Kanban board for the Dutchie take-home. Move tickets between columns as you work
 
 ## In Progress
 
-#### T-27 — Plumb `searchText` through the products query
-
-The server now accepts an optional `searchText` query param on `/get-products` and filters by `product.name` (case-insensitive substring). Wire that through the data layer first, without touching the UI.
-
-- [x] In `src/api/products.ts`, change `fetchProducts(searchText?: string)` to append `?searchText=<encoded>` when truthy. Empty/undefined returns the full list as before.
-- [x] In `src/hooks/use-products.ts`, accept `searchText?: string`, include it in the `queryKey` (e.g. `['products', searchText ?? '']`), and pass it to `fetchProducts`.
-- [x] In `src/hooks/use-product.ts`, query the empty-search cache key `['products', '']` so the PDP shares cache with the unsearched storefront load (and never re-uses a filtered list).
-- [x] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
-
-_Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; different `text` values cache independently; PDP cache behavior unchanged.
-
----
-
-## Backlog
-
-### Search (interview round 2 — task 2)
-
 #### T-28 — Search input on the storefront with debounced filtering
 
 - [ ] Add a controlled `<input type='text' />` at the top of `src/your-storefront.tsx` (above `<CartSummary />`) with `placeholder='Search products…'` and an `aria-label`.
@@ -38,6 +21,12 @@ _Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; differe
 - [ ] No styling beyond layout primitives.
 
 _Acceptance:_ typing in the input triggers at most one request per pause (~300ms); the grid updates accordingly; clearing the input restores the full list.
+
+---
+
+## Backlog
+
+_(empty)_
 
 ---
 
@@ -228,6 +217,17 @@ _Acceptance:_ clicking the button increments the cart entry for that product; cl
 - [x] Empty cart renders nothing (no placeholder text unless specified).
 
 _Acceptance:_ clicking buttons updates the visible summary in real time; ordering and content match the spec example.
+
+#### T-27 — Plumb `searchText` through the products query
+
+The server now accepts an optional `searchText` query param on `/get-products` and filters by `product.name` (case-insensitive substring). Wire that through the data layer first, without touching the UI.
+
+- [x] In `src/api/products.ts`, change `fetchProducts(searchText?: string)` to append `?searchText=<encoded>` when truthy. Empty/undefined returns the full list as before.
+- [x] In `src/hooks/use-products.ts`, accept `searchText?: string`, include it in the `queryKey` (e.g. `['products', searchText ?? '']`), and pass it to `fetchProducts`.
+- [x] In `src/hooks/use-product.ts`, query the empty-search cache key `['products', '']` so the PDP shares cache with the unsearched storefront load (and never re-uses a filtered list).
+- [x] Existing tests still pass (mocked `fetchProducts` accepts the new arg via `vi.fn`).
+
+_Acceptance:_ `useProducts(text)` fires `/get-products?searchText=text`; different `text` values cache independently; PDP cache behavior unchanged.
 
 #### T-23 — Manual styling pass _(deferred)_
 
